@@ -1,6 +1,6 @@
 {
   "name": "enzyme-db",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A powerful object-relational mapping (ORM) and data manipulation library designed to simplify and streamline interaction with local storage and data in JavaScript applications.",
   "author": "Rodolfo Herrera Hernandez @codewithrodi",
   "license": "MIT",
