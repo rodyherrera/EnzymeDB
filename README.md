@@ -6,51 +6,47 @@ Enzyme is an abstraction layer for the `localStorage Web API` provided by the br
 npm i enzyme-db
 ```
 
-### Table of Contents
-- [Introduction to EnzymeDB](#introduction-to-enzymedb)
-   - [When and Why to Use EnzymeDB](#when-and-why-to-use-enzymedb)
-   - [Created by Developers, for Developers](#created-by-developers-for-developers)
-- [Basic Usage of EnzymeDB](#basic-usage-of-enzymedb)
-   - [Initialization](#initialization)
-   - [Document Creation](#document-creation)
-   - [Document Retrieval](#document-retrieval)
-   - [Document Updating](#document-updating)
-   - [Document Deletion](#document-deletion)
-- [Schema-defined Rules](#schema-defined-rules)
-- [Middlewares](#middlewares)
-   - [Registering a Middleware](#registering-a-middleware)
-- [References Between Models](#references-between-models)
-- [Best Practices with EnzymeDB](#best-practices-with-enzymedb)
-- [Data Security and Privacy](#data-security-and-privacy)
-- [Performance Considerations](#performance-considerations)
-- [Exploring the EnzymeDB Class](#exploring-the-enzymedb-class)
-   - [Constructor](#constructor)
-   - [Model.DropCollection()](#method-dropcollection)
-   - [Model.GetCollection()](#method-getcollection)
-   - [Model.Overwrite()](#method-overwrite)
-   - [Model.Save()](#method-save)
-   - [Model.IsFieldInvalid()](#method-isfieldinvalid)
-   - [Model.Exists()](#method-exists)
-   - [Model.CountDocuments()](#method-countdocuments)
-   - [Model.Find()](#method-find)
-   - [Model.FindOne()](#method-findone)
-   - [Model.FindAll()](#method-findall)
-   - [Model.UpdateMany()](#method-updatemany)
-   - [Model.FindByIdAndDelete()](#method-findbyidanddelete)
-   - [Model.FindByIdAndUpdate()](#method-findbyidandupdate)
-   - [Model.FindOneAndDelete()](#method-findoneanddelete)
-   - [Model.FindOneAndUpdate()](#method-findoneandupdate)
-   - [Model.UpdateOne()](#method-updateone)
-   - [Model.DeleteOne()](#method-deleteone)
-   - [Model.DeleteMany()](#method-deletemany)
-   - [Model.CreateMany()](#method-createmany)
-   - [Model.Create()](#method-create)
-- [Examples and Use Cases](#examples-and-use-cases)
-   - [PWA with Dynamic Data](#pwa-with-dynamic-data)
-   - [Note Management](#note-management)
-   - [Task Lists in a Productivity App](#task-lists-in-a-productivity-app)
-
-11. [EnzymeDB License (MIT)](#enzymedb-license-mit)
+## Table of Contents
+  - [Enzyme DB](#enzyme-db)
+  - [When or why should you use it?](#when-or-why-should-you-use-it)
+  - [Built by developers, for developers!](#built-by-developers-for-developers)
+  - [Basic Usage](#basic-usage)
+    - [Initialization](#initialization)
+    - [Document creation](#document-creation)
+    - [Document search](#document-search)
+    - [Document update](#document-update)
+    - [Document deletion](#document-deletion)
+  - [Rules defined within the schema](#rules-defined-within-the-schema)
+  - [Middlewares](#middlewares)
+    - [Registering a middleware](#registering-a-middleware)
+  - [References between models](#references-between-models)
+  - [Better practices with Enzyme](#better-practices-with-enzyme)
+  - [Security and Data Privacy](#security-and-data-privacy)
+  - [Performance Considerations](#performance-considerations)
+  - [Exploring the class](#exploring-the-class)
+    - [constructor(Name, Schema, Options)](#constructorname-schema-options)
+    - [Model.DropCollection()](#modeldropcollection)
+    - [GetCollection()](#getcollection)
+    - [Overwrite(Collection)](#overwritecollection)
+    - [Save(...Documents)](#save-documents)
+    - [IsFieldInvalid(Field, Value)](#isfieldinvalidfield-value)
+    - [Exists(Query)](#existsquery)
+    - [CountDocuments(...Queries)](#countdocumentsqueries)
+    - [Find(...Queries)](#findqueries)
+    - [FindOne(Query)](#findonequery)
+    - [FindAll()](#findall)
+    - [UpdateMany(Query, Update)](#updatemanyquery-update)
+    - [FindByIdAndDelete](#findbyidanddelete)
+    - [FindByIdAndUpdate(Id, Update)](#findbyidandupdateid-update)
+    - [FindOneAndUpdate(Query, Update)](#findoneandupdatequery-update)
+    - [FindOneAndDelete(Query)](#findoneanddeletequery)
+    - [UpdateOne(Query, Update)](#updateonequery-update)
+    - [DeleteOne(Query)](#deleteonequery)
+    - [DeleteMany(...Queries)](#deletemanyqueries)
+    - [CreateMany(...Documents)](#createmanydocuments)
+    - [Create(Document)](#createdocument)
+  - [Examples and Use Cases](#examples-and-use-cases)
+  - [Enzyme under MIT license](#enzyme-under-mit-license)
 
 ## When or why should you use it?
 - **Data persistence**: If your web application needs certain data to persist between the different sessions that a user may have.
@@ -342,27 +338,27 @@ In order to initialize an instance of the Enzyme class where the parameters are:
 - `Schema` (Object): Object that describes the schema that the model documents should comply with.
 - `Options` (Object, Optional): Custom options for the model.
 
-**Model.DropCollection()**
+#### Model.DropCollection()
 It allows to eliminate all the existing documents that a certain collection houses based on an instance (model).
 - `Return value`: None.
 
-**GetCollection()**
+#### GetCollection()
 Allows you to retrieve all documents from the collection in the model within localStorage.
 - `Return value`: Document array.
 
-**Overwrite(Collection)**
+#### Overwrite(Collection)
 Allows you to replace the current collection in the model with a new provided collection, which will be written to the localStorage.
 - Parameters:
     - `Collection` (Array): It must be the new collection of documents.
 - `Return value`: None.
 
-**Save(...Documents)**
+#### Save(...Documents)
 It allows adding new documents to the existing collection within the model, which will be stored in localStorage.
 - Parameters:
     - `Documents` (Objects): One or more documents that are passed as a parameter to the function to add them into the collection.
 - `Return value`: None.
 
-**IsFieldInvalid(Field, Value)**
+#### IsFieldInvalid(Field, Value)
 Checks if a field delivered in the document is valid according to the rules defined in the model schema.
 - Parameters:
     - `Field` (String): The name of the field that you want to validate.
@@ -376,13 +372,13 @@ Checks if a field delivered in the document is valid according to the rules defi
         - `Value` (Any Kind): The current value of the field that failed validation.
         - `Length` (Number if Value is String else Undefined): The length of the field value, in the case of text type fields (for example, length of a character string).
 
-**Exists(Query)**
+#### Exists(Query)
 Checks if there is a document that meets the query delivered as a parameter.
 - Parameters:
     - `Query` (Object): Check that the document must comply.
 - Return value (Object): If the document is found, it is returned.
 
-**CountDocuments(...Queries)**
+#### CountDocuments(...Queries)
 Counts the number of documents that match the queries delivered as a parameter.
 - Parameters:
     - `Queries` (Objects): Queries to apply the filter to the document search.
@@ -390,7 +386,7 @@ Counts the number of documents that match the queries delivered as a parameter.
     - `Documents` (Array of Objects): Documents available in the collection.
     - `Length` (Number): Number of documents available in the collection.
 
-**Find(...Queries)**
+#### Find(...Queries)
 Find all documents matching the given queries.
 - Parameters:
     - `...Queries` (Objects): One or more queries that will be applied as a filter to find comments.
@@ -398,7 +394,7 @@ Find all documents matching the given queries.
     - `Status` (String): Indicates the status of the operation. 
     - `Documents` (Array of Objects): Contains the documents that matches.
 
-**FindOne(Query)**
+#### FindOne(Query)
 Allows you to find a document that matches the given query, if there are multiple documents, the first one found will be returned.
 - Parameters:
     - `Query` (Object): Query to apply as a filter for the search.
@@ -407,13 +403,13 @@ Allows you to find a document that matches the given query, if there are multipl
     - `Collection` (Array of Objects): Current collection of documents.
     - `Document` (Object): Contains the found document.
 
-**FindAll()** 
+#### FindAll()
 Gets all the documents that the collection of a respective model contains.
 - Return value (Object): 
     - `Documents` (Array of Objects): Documents available in the collection.
     - `Length` (Number): Number of documents available in the collection.
 
-**UpdateMany(Query, Update)**
+#### UpdateMany(Query, Update)
 Update one or more documents that match the query received.
 - Parameters:
     - `Query` (Object): Query to apply as a filter for the selection of documents.
@@ -423,7 +419,7 @@ Update one or more documents that match the query received.
     - `UpdatedDocuments` (Array of Objects): Updated documents.
     - `Collection` (Array of Objects): Collection of already updated documents.
 
-**FindByIdAndDelete**
+#### FindByIdAndDelete
 It finds a document within the collection according to its Id and proceeds to delete it after.
 - Parameters:
     - `Id` (String): Identifier of the document to delete.
@@ -432,7 +428,7 @@ It finds a document within the collection according to its Id and proceeds to de
     - `Collection` (Array of Objects): Collection of already updated documents.
     - `Document` (Object): Contains the deleted document.
 
-**FindByIdAndUpdate(Id, Update)**
+#### FindByIdAndUpdate(Id, Update)
 Finds a specific document based on the Identifier provided as a parameter and updates it with the second provided parameter.
 - Parameters:
     - `Id` (String): Identifier of the document to be updated.
@@ -443,7 +439,7 @@ Finds a specific document based on the Identifier provided as a parameter and up
     - `Document` (Object): Original document before applying the update.
     - `UpdatedDocument` (Object): Contains the already updated document.
 
-**FindOneAndUpdate(Query, Update)**
+#### FindOneAndUpdate(Query, Update)
 Finds a document that matches the provided query and updates it with the provided data. If there are multiple documents that match the search, the first of these is updated.
 - Parameters:
     - `Query` (Object): Query that will be applied as a filter for the selection of the document.
@@ -454,7 +450,7 @@ Finds a document that matches the provided query and updates it with the provide
     - `Document` (Object): Original document before applying the update.
     - `UpdatedDocument` (Object): Contains the already updated document.
 
-**FindOneAndDelete(Query)** 
+#### FindOneAndDelete(Query)
 Finds a document that matches the given query and then deletes it.
 - Parameters:
     - `Query` (Object): Query that will be applied for the selection of the document.
@@ -463,7 +459,7 @@ Finds a document that matches the given query and then deletes it.
     - `Collection` (Array of Objects): Collection of already updated documents.
     - `Document` (Object): Contains the deleted document.
 
-**UpdateOne(Query, Update)**
+#### UpdateOne(Query, Update)
 Updates a document that matches the supplied query.
 - Parameters:
     - `Query` (Object): Query that will be applied for the selection of the document, if there are multiple coincidences, the first one will be chosen.
@@ -474,7 +470,7 @@ Updates a document that matches the supplied query.
     - `Document` (Object): Original document before applying the update.
     - `UpdatedDocument` (Object): Contains the already updated document.
 
-**DeleteOne(Query)**
+#### DeleteOne(Query)
 Deletes a document that matches the provided query.
 - Parameters:
     - `Query` (Object): Query that will be applied for the selection of the document.
@@ -483,7 +479,7 @@ Deletes a document that matches the provided query.
     - `Collection` (Array of Objects): Collection of already updated documents.
     - `Document` (Object): Contains the deleted document.
 
-**DeleteMany(...Queries)**
+#### DeleteMany(...Queries)
 Deletes one or more documents that match the queries provided as a parameter.
 - Parameters:
     - `...Queries` (Objects): One or more queries for the selection of documents.
@@ -492,7 +488,7 @@ Deletes one or more documents that match the queries provided as a parameter.
     - `Collection` (Array of Objects): Collection of already updated documents.
     - `DeletedDocuments` (Array of Objects): Contains the deleted documents.
 
-**CreateMany(...Documents)**
+#### CreateMany(...Documents)
 Allows the creation of one or more documents within the collection.
 - Parameters:
     - `...Documents` (Objects): One or more documents to create..
@@ -501,7 +497,7 @@ Allows the creation of one or more documents within the collection.
     - `Collection` (Array of Objects): Collection of already updated documents.
     - `CreatedDocuments` (Array of Objects): Contains the created documents.
 
-**Create(Document)**
+#### Create(Document)
 Create a document in the collection.
 - Parameters:
     - `Document` (Object): Document to create.
