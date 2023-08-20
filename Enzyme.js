@@ -15,12 +15,12 @@
 ****/
 
 import { v4 } from 'uuid';
+import LocalStorage from './LocalStorage.js';
 
 // TODO:  In case there is no localStorage API in the 
 // TODO: JavaScript execution environment, it means that Enzyme 
 // TODO: is running outside of the browser, if so, we will simulate the localStorage API.
 if(typeof global !== 'undefined' && !global?.localStorage){
-    const LocalStorage = (await import('./LocalStorage.js')).default;
     global.localStorage = new LocalStorage();
 }
 
