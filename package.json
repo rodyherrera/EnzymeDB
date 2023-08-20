@@ -1,0 +1,38 @@
+{
+  "name": "enzyme-db",
+  "version": "1.0.0",
+  "description": "A powerful object-relational mapping (ORM) and data manipulation library designed to simplify and streamline interaction with local storage and data in JavaScript applications.",
+  "author": "Rodolfo Herrera Hernandez @codewithrodi",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codewithrodi/EnzymeDB/"
+  },
+  "keywords": [
+    "mongodb",
+    "document",
+    "model",
+    "schema",
+    "database",
+    "localStorage",
+    "layer",
+    "abstraction",
+    "data",
+    "client",
+    "react",
+    "query",
+    "nosql",
+    "store",
+    "db",
+    "database",
+    "local",
+    "browser",
+    "JSON",
+    "offline-first",
+    "pwa"
+  ],
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
