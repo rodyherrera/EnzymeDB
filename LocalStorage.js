@@ -5,7 +5,7 @@
  *
  * =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
  *
- * For related information - https://github.com/CodeWithRodi/EnzymeDB/
+ * For related information - https://github.com/rodyherrera/EnzymeDB/
  * 
  * A powerful object-relational mapping (ORM) and data manipulation library 
  * designed to simplify and streamline interaction with local storage 
